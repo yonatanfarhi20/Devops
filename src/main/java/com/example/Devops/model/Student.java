@@ -1,20 +1,27 @@
 package com.example.Devops.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotEmpty;
-import org.hibernate.validator.constraints.Length;
+import jakarta.validation.constraints.*;
 import lombok.*;
+import org.hibernate.validator.constraints.Length;
 
 import java.io.Serializable;
 
 @Entity
 @Table(name="student")
 @Getter @Setter
-@AllArgsConstructor
 public class Student implements Serializable {
     private static final long serialVersionUID = 1L;
+
+    public Student(){}
+
+    public Student(String fullName, Integer psycoScore, Double graduationScore, String phone, String profilePicture) {
+        this.fullName = fullName;
+        this.psycoScore = psycoScore;
+        this.graduationScore = graduationScore;
+        this.phone = phone;
+        this.profilePicture = profilePicture;
+    }
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
@@ -37,5 +44,4 @@ public class Student implements Serializable {
 
     @Length(max = 500)
     private String profilePicture;
-
 }
